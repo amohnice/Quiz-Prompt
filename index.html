@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question Prompt</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      position: relative; /* Added to allow movement beyond the container */
+    }
+
+    .container {
+      text-align: center;
+      position: relative;
+      width: 100%; /* Ensuring full width of the body */
+      height: 100%; /* Ensuring full height of the body */
+    }
+
+    .question {
+      font-size: 1.5em;
+      margin-bottom: 20px;
+    }
+
+    .button {
+      padding: 10px 20px;
+      font-size: 1em;
+      margin: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .yes-button {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .no-button {
+      background-color: #dc3545;
+      color: white;
+      position: absolute;
+    }
+
+    .response {
+      font-size: 2em;
+      margin-top: 20px;
+      color: #0a29f1;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="question">Do you love me?</div>
+    <button class="button yes-button" onclick="answerYes()">YES</button>
+    <button class="button no-button" onmouseover="moveNoButton()">NO</button>
+    <div class="response" id="responseText"></div> <!-- Placeholder for the response -->
+  </div>
+
+  <script>
+    function answerYes() {
+      // Instead of alert, display the message directly on the page
+      document.getElementById("responseText").textContent = "I love you too!";
+    }
+
+    function moveNoButton() {
+      const noButton = document.querySelector('.no-button');
+      const container = document.querySelector('.container');
+
+      // Now we remove the constraints and let the button move outside the container
+      const maxX = window.innerWidth - noButton.clientWidth; // Use the full window width
+      const maxY = window.innerHeight - noButton.clientHeight; // Use the full window height
+
+      const randomX = Math.floor(Math.random() * maxX); // Generate random X position
+      const randomY = Math.floor(Math.random() * maxY); // Generate random Y position
+
+      // Set the button's new position
+      noButton.style.left = `${randomX}px`;
+      noButton.style.top = `${randomY}px`;
+    }
+  </script>
+
+</body>
+
+</html>
